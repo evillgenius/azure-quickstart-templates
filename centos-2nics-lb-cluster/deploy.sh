@@ -4,3 +4,7 @@ defaultgw=$(ip route show |sed -n "s/^default via //p")
 declare -a gateway=(${defaultgw// / })
 sed -i "\$aGATEWAY=${gateway[0]}" /etc/sysconfig/network
 service network restart
+yum update -y
+curl -fsSL https://test.docker.com/ | sh
+service docker start
+chkconfig docker on
